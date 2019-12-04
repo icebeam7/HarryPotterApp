@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:HarryPotterApp.Views"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:behaviors="clr-namespace:HarryPotterApp.Behaviors"
+             x:Class="HarryPotterApp.Views.CharactersListView"
+             ios:Page.UseSafeArea="true"
+             Title="Characters List"
+             mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout Margin="5">
+            <StackLayout Orientation="Horizontal" Margin="5">
+                <Label Text="Use Local Storage?"/>
+                <Switch IsToggled="{Binding UseLocalStorage, Mode=TwoWay}">
+                    <Switch.Behaviors>
+                        <behaviors:SwitchBehavior Command="{Binding SetStorageCommand}"/>
+                    </Switch.Behaviors>
+                </Switch>
+            </StackLayout>
+            
+            <Button Text="Add New Character"
+                    Command="{Binding AddNewCharacterCommand}"
+                    CommandParameter="{x:Type views:CharacterDetailsView}"
+                    Margin="5"
+                    HeightRequest="40"
+                    BackgroundColor="Blue"
+                    TextColor="White"
+                    CornerRadius="5"/>
+            
+            <CollectionView ItemsSource="{Binding Characters}"
+                            SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding GoToDetailsCommand}"
+                            SelectionChangedCommandParameter="{x:Type views:CharacterDetailsView}"
+                            SelectionMode="Single"
+                            EmptyView="No characters registered yet!"
+                            Margin="5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="Blue"
+                                   Text="{Binding name, StringFormat='Name: {0}'}"/>
+
+                            <Label Grid.Row="1"
+                                   FontAttributes="Italic"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="Orange"
+                                   Text="{Binding school, StringFormat='School: {0}'}"/>
+
+                            <Label Grid.Row="2"
+                                   FontAttributes="Italic"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="DarkGreen"
+                                   Text="{Binding animagus, StringFormat='Animagus: {0}'}"/>
+
+                            <Label Grid.Row="3"
+                                   FontAttributes="Italic"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="Brown"
+                                   Text="{Binding wand, StringFormat='Wand: {0}'}"/>
+
+                            <BoxView Grid.Row="4" HeightRequest="1" Color="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

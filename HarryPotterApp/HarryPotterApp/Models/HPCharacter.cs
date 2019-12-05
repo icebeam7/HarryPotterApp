@@ -1,5 +1,4 @@
-﻿//01
-using SQLite;
+﻿using SQLite;
 
 namespace HarryPotterApp.Models
 {

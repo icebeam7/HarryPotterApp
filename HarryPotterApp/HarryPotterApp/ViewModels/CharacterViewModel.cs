@@ -1,5 +1,4 @@
-﻿//05
-using HarryPotterApp.Models;
+﻿using HarryPotterApp.Models;
 
 namespace HarryPotterApp.ViewModels
 {
@@ -149,22 +148,22 @@ namespace HarryPotterApp.ViewModels
         public CharacterViewModel(HPCharacter character)
         {
             _id = character._id;
+            __v = character.__v;
             name = character.name;
             role = character.role;
+            wand = character.wand;
+            alias = character.alias;
             house = character.house;
             school = character.school;
-            __v = character.__v;
-            ministryOfMagic = character.ministryOfMagic;
-            orderOfThePhoenix = character.orderOfThePhoenix;
-            dumbledoresArmy = character.dumbledoresArmy;
+            boggart = character.boggart;
+            species = character.species;
+            animagus = character.animagus;
+            patronus = character.patronus;
             deathEater = character.deathEater;
             bloodStatus = character.bloodStatus;
-            species = character.species;
-            boggart = character.boggart;
-            alias = character.alias;
-            animagus = character.animagus;
-            wand = character.wand;
-            patronus = character.patronus;
+            dumbledoresArmy = character.dumbledoresArmy;
+            ministryOfMagic = character.ministryOfMagic;
+            orderOfThePhoenix = character.orderOfThePhoenix;
         }
 
         public HPCharacter GetCharacter()
@@ -172,22 +171,22 @@ namespace HarryPotterApp.ViewModels
             return new HPCharacter()
             {
                 _id = this._id,
-                alias = this.alias,
-                animagus = this.animagus,
-                bloodStatus = this.bloodStatus,
-                boggart = this.boggart,
-                deathEater = this.deathEater,
-                dumbledoresArmy = this.dumbledoresArmy,
-                house = this.house,
-                ministryOfMagic = this.ministryOfMagic,
+                __v  = this.__v,
                 name = this.name,
-                orderOfThePhoenix = this.orderOfThePhoenix,
-                patronus = this.patronus,
                 role = this.role,
-                school = this.school,
-                species = this.species,
                 wand = this.wand,
-                __v  = this.__v
+                alias = this.alias,
+                house = this.house,
+                school = this.school,
+                boggart = this.boggart,
+                species = this.species,
+                animagus = this.animagus,
+                patronus = this.patronus,
+                deathEater = this.deathEater,
+                bloodStatus = this.bloodStatus,
+                dumbledoresArmy = this.dumbledoresArmy,
+                ministryOfMagic = this.ministryOfMagic,
+                orderOfThePhoenix = this.orderOfThePhoenix,
             };
         }
     }

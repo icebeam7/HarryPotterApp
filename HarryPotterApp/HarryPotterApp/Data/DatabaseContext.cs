@@ -1,5 +1,4 @@
-﻿//02
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using SQLite;
@@ -19,12 +18,12 @@ namespace HarryPotterApp.Data
             connection.CreateTableAsync<HPCharacter>().Wait();
         }
 
-        public async Task<List<T>> GetItemsAsync<T>() where T: new()
+        public async Task<List<T>> GetItemsAsync<T>() where T : new()
         {
             return await connection.Table<T>().ToListAsync();
         }
 
-        public async Task<List<T>> FilterItems<T>(string table, string condition) where T : new()
+        public async Task<List<T>> FilterItemsAsync<T>(string table, string condition) where T : new()
         {
             return await connection.QueryAsync<T>($"SELECT * FROM {table} WHERE {condition}");
         }

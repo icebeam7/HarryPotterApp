@@ -1,5 +1,4 @@
-﻿//07
-using System;
+﻿using System;
 using System.Windows.Input;
 using System.Threading.Tasks;
 
@@ -61,21 +60,26 @@ namespace HarryPotterApp.ViewModels
 
         async Task DeleteCharacter()
         {
-            var hpCharacter = CharacterVM.GetCharacter();
+            var confirm = await UserDialogs.Instance.ConfirmAsync("Are you sure?", "Delete?", "Yes", "No");
 
-            var success = 0;
-            var useLocalStorage = Preferences.Get("UsingLocalStorage", true);
-
-            if (useLocalStorage)
+            if (confirm)
             {
-                success = await App.Context.DeleteItemAsync<HPCharacter>(hpCharacter);
-            }
-            else
-            {
-                // TODO: Call REST Service here
-            }
+                var hpCharacter = CharacterVM.GetCharacter();
 
-            await UserDialogs.Instance.AlertAsync((success > 0) ? "Success!" : "Error!", "Deleting...", "OK");
+                var success = 0;
+                var useLocalStorage = Preferences.Get("UsingLocalStorage", true);
+
+                if (useLocalStorage)
+                {
+                    success = await App.Context.DeleteItemAsync<HPCharacter>(hpCharacter);
+                }
+                else
+                {
+                    // TODO: Call REST Service here
+                }
+
+                await UserDialogs.Instance.AlertAsync((success > 0) ? "Success!" : "Error!", "Deleting...", "OK");
+            }
         }
     }
 }

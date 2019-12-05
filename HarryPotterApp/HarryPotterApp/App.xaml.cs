@@ -1,5 +1,4 @@
-﻿//03 y final
-using System;
+﻿using System;
 using System.IO;
 
 using Xamarin.Forms;

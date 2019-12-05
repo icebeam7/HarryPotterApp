@@ -1,5 +1,4 @@
-﻿//06
-using System;
+﻿using System;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -65,7 +64,7 @@ namespace HarryPotterApp.ViewModels
             {
                 hpCharacters = string.IsNullOrWhiteSpace(name)
                     ? await App.Context.GetItemsAsync<HPCharacter>()
-                    : await App.Context.FilterItems<HPCharacter>("HPCharacter", $"name LIKE '{name}'");
+                    : await App.Context.FilterItemsAsync<HPCharacter>("HPCharacter", $"name LIKE '{name}'");
             }
             else
             {

@@ -30,6 +30,14 @@ namespace HarryPotterApp.ViewModels
             set { _selectedCharacter = value; OnPropertyChanged(); }
         }
 
+        private string _searchText;
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { _searchText = value; OnPropertyChanged(); }
+        }
+
         private bool _useLocalStorage;
 
         public bool UseLocalStorage
@@ -50,22 +58,22 @@ namespace HarryPotterApp.ViewModels
             Navigation = navigation;
             UseLocalStorage = Preferences.Get("UsingLocalStorage", true);
 
-            SearchByNameCommand = new Command<string>(async (name) => await LoadData(name));
+            SearchByNameCommand = new Command(async() => await LoadData());
             GoToDetailsCommand = new Command<Type>(async (pageType) => await GoToDetails(pageType));
             AddNewCharacterCommand = new Command<Type>(async (pageType) => await AddNewCharacter(pageType));
             SetStorageCommand = new Command(() => SetStorage());
         }
 
-        async Task LoadData(string name)
+        async Task LoadData()
         {
             Characters = new ObservableCollection<CharacterViewModel>();
             List<HPCharacter> hpCharacters = new List<HPCharacter>();
 
             if (UseLocalStorage)
             {
-                hpCharacters = string.IsNullOrWhiteSpace(name)
+                hpCharacters = string.IsNullOrWhiteSpace(SearchText)
                     ? await App.Context.GetItemsAsync<HPCharacter>()
-                    : await App.Context.FilterItemsAsync<HPCharacter>("HPCharacter", $"name LIKE '{name}'");
+                    : await App.Context.FilterItemsAsync<HPCharacter>("HPCharacter", $"name LIKE '%{SearchText}%'");
             }
             else
             {
@@ -105,7 +113,12 @@ namespace HarryPotterApp.ViewModels
         void SetStorage()
         {
             Preferences.Set("UsingLocalStorage", UseLocalStorage);
-            Task.Run(async () => await LoadData(string.Empty));
+
+            Task.Run(async () => 
+            {
+                SearchText = string.Empty;
+                await LoadData();
+            });
         }
     }
 }

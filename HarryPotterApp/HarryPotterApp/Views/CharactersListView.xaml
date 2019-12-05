@@ -12,15 +12,28 @@
              mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout Margin="5">
-            <!--<StackLayout Orientation="Horizontal" Margin="5">
+            <SearchBar x:Name="SearchBarCharacters" 
+                       SearchCommand="{Binding SearchByNameCommand}"
+                       Text="{Binding SearchText, Mode=TwoWay}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference SearchBarCharacters}}"
+                       Placeholder="Name..."
+                       Margin="5">
+                <SearchBar.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding SearchByNameCommand}"/>
+                </SearchBar.Behaviors>
+            </SearchBar>
+
+            <StackLayout Orientation="Horizontal" Margin="5">
                 <Label Text="Use Local Storage?"/>
                 <Switch IsToggled="{Binding UseLocalStorage, Mode=TwoWay}">
                     <Switch.Behaviors>
                         <behaviors:SwitchBehavior Command="{Binding SetStorageCommand}"/>
                     </Switch.Behaviors>
                 </Switch>
-            </StackLayout>-->
-            
+            </StackLayout>
+
             <Button Text="Add New Character"
                     Command="{Binding AddNewCharacterCommand}"
                     CommandParameter="{x:Type views:CharacterDetailsView}"

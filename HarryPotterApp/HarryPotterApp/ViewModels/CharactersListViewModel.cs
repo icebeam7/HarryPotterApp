@@ -8,6 +8,7 @@ using HarryPotterApp.Models;
 
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using HarryPotterApp.Services;
 
 namespace HarryPotterApp.ViewModels
 {
@@ -68,7 +69,9 @@ namespace HarryPotterApp.ViewModels
             }
             else
             {
-                // TODO: Call REST Service here
+                var service = new RESTService();
+                var result = await service.GetCharacters();
+                hpCharacters = result;
             }
 
             foreach (var item in hpCharacters)

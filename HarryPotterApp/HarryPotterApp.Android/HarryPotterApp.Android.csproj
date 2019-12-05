@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -106,7 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HarryPotterApp\HarryPotterApp.csproj">
-      <Project>{E3B3EED4-6058-4E42-A6CC-A97D5D16F0DE}</Project>
+      <Project>{0DA4D168-DC59-40F4-A76D-B089384ECF78}</Project>
       <Name>HarryPotterApp</Name>
     </ProjectReference>
   </ItemGroup>

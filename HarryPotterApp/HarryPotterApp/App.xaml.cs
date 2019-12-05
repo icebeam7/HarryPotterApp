@@ -18,8 +18,7 @@ namespace HarryPotterApp
                 if (context == null)
                 {
                     var dbPath = Path.Combine(
-                        Environment.GetFolderPath(
-                            Environment.SpecialFolder.LocalApplicationData),
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                         "HarryPotterDB.db3");
 
                     context = new DatabaseContext(dbPath); 

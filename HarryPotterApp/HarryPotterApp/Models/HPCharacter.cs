@@ -2,6 +2,7 @@
 
 namespace HarryPotterApp.Models
 {
+    [Table("HPCharacter")]
     public class HPCharacter
     {
         [PrimaryKey]

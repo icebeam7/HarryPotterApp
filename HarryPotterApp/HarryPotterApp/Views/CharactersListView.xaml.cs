@@ -1,5 +1,4 @@
-﻿//09
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using HarryPotterApp.ViewModels;
@@ -22,7 +21,6 @@ namespace HarryPotterApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
             vm.SearchByNameCommand.Execute(string.Empty);
         }
     }

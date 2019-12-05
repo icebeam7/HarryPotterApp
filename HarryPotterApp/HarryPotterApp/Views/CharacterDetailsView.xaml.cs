@@ -1,6 +1,4 @@
-﻿//11
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HarryPotterApp.Views

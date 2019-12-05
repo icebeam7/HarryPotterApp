@@ -74,8 +74,11 @@ namespace HarryPotterApp.ViewModels
                 hpCharacters = result;
             }
 
-            foreach (var item in hpCharacters)
-                Characters.Add(new CharacterViewModel(item));
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                foreach (var item in hpCharacters)
+                    Characters.Add(new CharacterViewModel(item));
+            });
         }
 
         async Task GoToDetails(Type pageType)

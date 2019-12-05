@@ -75,7 +75,7 @@ namespace HarryPotterApp.Services
             if (!responseMessage.IsSuccessStatusCode)
                 return default(T);
 
-            return JsonConvert.DeserializeObject<T>(await responseMessage.Content.ReadAsStringAsync());
+            return content;
         }
 
         private async Task<bool> DeleteAsync(string method, string id)

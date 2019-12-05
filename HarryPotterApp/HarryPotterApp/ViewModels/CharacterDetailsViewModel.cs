@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 
 using Acr.UserDialogs;
+using HarryPotterApp.Services;
 
 namespace HarryPotterApp.ViewModels
 {
@@ -52,7 +53,13 @@ namespace HarryPotterApp.ViewModels
             }
             else
             {
-                // TODO: Call REST Service here
+                var service = new RESTService();
+                HPCharacter result;
+                if (isInsert)
+                    result = await service.AddCharacter(hpCharacter);
+                else
+                    result = await service.EditCharacter(hpCharacter);
+                success = result != null ? 2 : 0;
             }
 
             await UserDialogs.Instance.AlertAsync((success > 0) ? "Success!" : "Error!", "Saving...", "OK");
@@ -75,7 +82,9 @@ namespace HarryPotterApp.ViewModels
                 }
                 else
                 {
-                    // TODO: Call REST Service here
+                    var service = new RESTService();
+                    var result = await service.DeleteCharacter(hpCharacter._id);
+                    success = result ? 2 : 0;
                 }
 
                 await UserDialogs.Instance.AlertAsync((success > 0) ? "Success!" : "Error!", "Deleting...", "OK");

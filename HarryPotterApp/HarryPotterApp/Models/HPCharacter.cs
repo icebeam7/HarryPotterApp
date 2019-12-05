@@ -6,6 +6,7 @@ namespace HarryPotterApp.Models
     {
         [PrimaryKey]
         public string _id { get; set; }
+
         public string name { get; set; }
         public string role { get; set; }
         public string house { get; set; }
